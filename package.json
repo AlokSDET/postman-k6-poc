@@ -1,0 +1,18 @@
+{
+  "name": "postman_k6",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postman:tests": "newman run ./collections/Playwright_API_Test.postman_collection.json",
+    "convert-to-k6": "postman-to-k6 ./collections/Playwright_API_Test.postman_collection.json -o k6-script.js",
+    "performance-tests": "k6 run k6-script.js --summary-trend-stats=\"avg,p(90),p(99.9),p(99.99),count\" --out json=test.csv"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "k6": "^0.0.0"
+  }
+}
