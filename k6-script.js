@@ -7,13 +7,18 @@ export let options = { maxRedirects: 4 };
 
 const Request = Symbol.for("request");
 postman[Symbol.for("initial")]({
-  options
+  options,
+  environment: {
+    URL: "petstore.swagger.io",
+    id: "",
+    token: ""
+  }
 });
 
 export default function() {
   postman[Request]({
     name: "Registration",
-    id: "abc7d7b1-7451-42a5-aa8c-85df8a4a8768",
+    id: "49ffe7e7-1f3b-4558-8fb9-06e1f751c83d",
     method: "POST",
     address: "http://restapi.adequateshop.com/api/authaccount/registration",
     data:
@@ -22,7 +27,7 @@ export default function() {
 
   postman[Request]({
     name: "Login",
-    id: "eebe827d-fda1-4a50-b4cf-73bfc88a026e",
+    id: "670a6928-8998-43a3-a824-e88e7969815b",
     method: "POST",
     address: "http://restapi.adequateshop.com/api/authaccount/login",
     data: '{\r\n\t"email":"alok.s@gmail.com",\r\n\t"password":123456\r\n}',
@@ -37,7 +42,7 @@ export default function() {
 
   postman[Request]({
     name: "Get users from page 1",
-    id: "717398da-b284-4a7a-aa81-f244c629c40e",
+    id: "2524be44-4110-4f0c-ac3b-536d623f5937",
     method: "GET",
     address: "http://restapi.adequateshop.com/api/users?page=1",
     headers: {
@@ -72,7 +77,7 @@ export default function() {
 
   postman[Request]({
     name: "User Details",
-    id: "38988958-c9c4-47f2-8b44-873c995102c5",
+    id: "a6acf39f-6c88-4718-bb96-8fcb8e25f29d",
     method: "GET",
     address: "http://restapi.adequateshop.com/api/users/292528",
     headers: {
@@ -82,7 +87,7 @@ export default function() {
 
   postman[Request]({
     name: "Create User",
-    id: "f10b9173-f7b3-4c00-a63f-beaddb28a1dd",
+    id: "a989a246-0fc2-4734-be9c-56bd49ad6486",
     method: "POST",
     address: "http://restapi.adequateshop.com/api/users",
     data:
@@ -94,7 +99,7 @@ export default function() {
 
   postman[Request]({
     name: "update user details",
-    id: "4e2c6493-7fdd-4b6b-8d84-ef67408203c5",
+    id: "b5a0918c-8c30-4a59-be7e-c20850de263e",
     method: "PUT",
     address: "http://restapi.adequateshop.com/api/users/292528",
     data:
@@ -106,7 +111,7 @@ export default function() {
 
   postman[Request]({
     name: "Delete uSER",
-    id: "b3ff991b-6231-4209-a1f2-801d6287de2e",
+    id: "959a784b-a9ca-4b2c-930a-a73b3b7fe54c",
     method: "DELETE",
     address: "http://restapi.adequateshop.com/api/users/292528",
     headers: {
@@ -116,7 +121,7 @@ export default function() {
 
   postman[Request]({
     name: "https://fakestoreapi.com/products/1",
-    id: "9f03e53d-9044-40f0-a9e5-5c66e2b477a7",
+    id: "8241f9ec-bca3-4b22-8b8a-b2b83581e8a5",
     method: "GET",
     address: "https://fakestoreapi.com/products/1",
     post(response) {

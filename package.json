@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postman:tests": "newman run ./collections/Playwright_API_Test.postman_collection.json",
-    "convert-to-k6": "postman-to-k6 ./collections/Playwright_API_Test.postman_collection.json -o k6-script.js",
+    "postman:tests": "newman run ./collections/Playwright_API_Test.postman_collection.json -e ./enviornments/UAT.postman_environment.json",
+    "convert-to-k6": "postman-to-k6 ./collections/Playwright_API_Test.postman_collection.json -e ./enviornments/UAT.postman_environment.json -o k6-script.js",
     "performance-tests": "k6 run k6-script.js --summary-trend-stats=\"avg,p(90),p(99.9),p(99.99),count\" --out json=test.csv"
   },
   "keywords": [],
