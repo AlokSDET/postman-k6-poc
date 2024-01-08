@@ -14,5 +14,8 @@
   "license": "ISC",
   "dependencies": {
     "k6": "^0.0.0"
+  },
+  "devDependencies": {
+    "@apideck/postman-to-k6": "^1.8.10"
   }
 }
