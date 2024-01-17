@@ -2,6 +2,7 @@
 
 import "./libs/shim/core.js";
 import "./libs/shim/expect.js";
+import "./libs/shim/urijs.js";
 
 export let options = { maxRedirects: 4 };
 
@@ -9,151 +10,115 @@ const Request = Symbol.for("request");
 postman[Symbol.for("initial")]({
   options,
   environment: {
-    URL: "petstore.swagger.io",
-    id: "",
-    token: ""
+    BASE_URL: "https://test-api.k6.io"
   }
 });
 
 export default function() {
   postman[Request]({
-    name: "Registration",
-    id: "49ffe7e7-1f3b-4558-8fb9-06e1f751c83d",
-    method: "POST",
-    address: "http://restapi.adequateshop.com/api/authaccount/registration",
-    data:
-      '{\r\n\r\n            "name":"Developer",\r\n            "email":"alok.s@gmail.com",\r\n            "password":123456\r\n}'
-  });
-
-  postman[Request]({
-    name: "Login",
-    id: "670a6928-8998-43a3-a824-e88e7969815b",
-    method: "POST",
-    address: "http://restapi.adequateshop.com/api/authaccount/login",
-    data: '{\r\n\t"email":"alok.s@gmail.com",\r\n\t"password":123456\r\n}',
-    post(response) {
-      pm.test("Your test name", function() {
-        var jsonData = pm.response.json();
-        let token = jsonData.data.Token;
-        pm.environment.set("token", token);
-      });
-    }
-  });
-
-  postman[Request]({
-    name: "Get users from page 1",
-    id: "2524be44-4110-4f0c-ac3b-536d623f5937",
+    name: "Get Crocodiles",
+    id: "668d6907-0f2c-4c1f-992d-2cb6847a4646",
     method: "GET",
-    address: "http://restapi.adequateshop.com/api/users?page=1",
-    headers: {
-      Authorization: "Bearer {{token}}"
-    },
+    address: "{{BASE_URL}}/public/crocodiles/",
     post(response) {
       pm.test("Response status code is 200", function() {
-        pm.expect(pm.response.code).to.equal(200);
+        pm.response.to.have.status(200);
       });
 
       pm.test("Response has the required fields", function() {
         const responseData = pm.response.json();
 
-        pm.expect(responseData).to.be.an("object");
-        pm.expect(responseData).to.have.property("page");
-        pm.expect(responseData).to.have.property("per_page");
-        pm.expect(responseData).to.have.property("totalrecord");
-        pm.expect(responseData).to.have.property("total_pages");
-        pm.expect(responseData).to.have.property("data");
-      });
-
-      pm.test("Email is in a valid format", function() {
-        const responseData = pm.response.json();
-
-        pm.expect(responseData.data).to.be.an("array");
-        responseData.data.forEach(function(user) {
-          pm.expect(user.email).to.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
+        pm.expect(responseData).to.be.an("array");
+        responseData.forEach(crocodile => {
+          pm.expect(crocodile).to.have.property("id");
+          pm.expect(crocodile).to.have.property("name");
+          pm.expect(crocodile).to.have.property("sex");
+          pm.expect(crocodile).to.have.property("date_of_birth");
+          pm.expect(crocodile).to.have.property("age");
         });
       });
-    }
-  });
 
-  postman[Request]({
-    name: "User Details",
-    id: "a6acf39f-6c88-4718-bb96-8fcb8e25f29d",
-    method: "GET",
-    address: "http://restapi.adequateshop.com/api/users/292528",
-    headers: {
-      Authorization: "Bearer {{token}}"
-    }
-  });
+      pm.test("Date of birth is in a valid date format", function() {
+        const responseData = pm.response.json();
 
-  postman[Request]({
-    name: "Create User",
-    id: "a989a246-0fc2-4734-be9c-56bd49ad6486",
-    method: "POST",
-    address: "http://restapi.adequateshop.com/api/users",
-    data:
-      '{\r\n\r\n\t"name":"photographer",\r\n\t"email":"photographer@gmail.com",\r\n\t"location":"USA"\r\n}',
-    headers: {
-      Authorization: "Bearer {{token}}"
-    }
-  });
-
-  postman[Request]({
-    name: "update user details",
-    id: "b5a0918c-8c30-4a59-be7e-c20850de263e",
-    method: "PUT",
-    address: "http://restapi.adequateshop.com/api/users/292528",
-    data:
-      '{\r\n    "id": 292543,\r\n\t"name":"photogrpher change name",\r\n\t"email":"photogrpher@gmail.com",\r\n\t"location":"USA"\r\n}',
-    headers: {
-      Authorization: "Bearer {{token}}"
-    }
-  });
-
-  postman[Request]({
-    name: "Delete uSER",
-    id: "959a784b-a9ca-4b2c-930a-a73b3b7fe54c",
-    method: "DELETE",
-    address: "http://restapi.adequateshop.com/api/users/292528",
-    headers: {
-      Authorization: "Bearer {{token}}"
-    }
-  });
-
-  postman[Request]({
-    name: "https://fakestoreapi.com/products/1",
-    id: "8241f9ec-bca3-4b22-8b8a-b2b83581e8a5",
-    method: "GET",
-    address: "https://fakestoreapi.com/products/1",
-    post(response) {
-      pm.test("Response status code is 200", function() {
-        pm.expect(pm.response.code).to.equal(200);
+        pm.expect(responseData).to.be.an("array");
+        responseData.forEach(function(crocodile) {
+          pm.expect(crocodile.date_of_birth).to.match(/^\d{4}-\d{2}-\d{2}$/);
+        });
       });
 
-      pm.test("Content-Type header is application/json", function() {
+      pm.test("Age is a non-negative integer", function() {
+        const responseData = pm.response.json();
+
+        pm.expect(responseData).to.be.an("array");
+        responseData.forEach(function(crocodile) {
+          pm.expect(crocodile.age)
+            .to.be.a("number")
+            .and.to.satisfy(
+              age => age >= 0,
+              "Age should be a non-negative integer"
+            );
+        });
+      });
+
+      pm.test("Content type is application/json", function() {
         pm.expect(pm.response.headers.get("Content-Type")).to.include(
           "application/json"
         );
       });
+    }
+  });
 
-      pm.test("Price is a non-negative number", function() {
-        const responseData = pm.response.json();
-
-        pm.expect(responseData).to.be.an("object");
-        pm.expect(responseData.price).to.be.a("number");
-        pm.expect(responseData.price).to.be.at.least(0);
+  postman[Request]({
+    name: "Get Crocodile 1",
+    id: "f266c0c6-1d87-4f0b-9942-4f72a0562288",
+    method: "GET",
+    address: "https://test-api.k6.io/public/crocodiles/1/",
+    post(response) {
+      pm.test("Response status code is 200", function() {
+        pm.response.to.have.status(200);
       });
 
       pm.test(
-        "Rating object is present and contains expected properties",
+        "Response has the required fields - id, name, sex, date_of_birth, and age",
         function() {
           const responseData = pm.response.json();
 
           pm.expect(responseData).to.be.an("object");
-          pm.expect(responseData.rating).to.exist;
-          pm.expect(responseData.rating).to.have.property("rate");
-          pm.expect(responseData.rating).to.have.property("count");
+          pm.expect(responseData).to.have.property("id");
+          pm.expect(responseData).to.have.property("name");
+          pm.expect(responseData).to.have.property("sex");
+          pm.expect(responseData).to.have.property("date_of_birth");
+          pm.expect(responseData).to.have.property("age");
         }
       );
+
+      pm.test("Name is a non-empty string", function() {
+        const responseData = pm.response.json();
+
+        pm.expect(responseData).to.be.an("object");
+        pm.expect(responseData.name)
+          .to.be.a("string")
+          .and.to.have.lengthOf.at.least(1, "Name should not be empty");
+      });
+
+      pm.test("Date of birth is in a valid date format", function() {
+        const responseData = pm.response.json();
+
+        pm.expect(responseData).to.be.an("object");
+        pm.expect(responseData.date_of_birth).to.match(/^\d{4}-\d{2}-\d{2}$/);
+      });
+
+      pm.test("Age is a non-negative integer", function() {
+        const responseData = pm.response.json();
+
+        pm.expect(responseData).to.be.an("object");
+        pm.expect(responseData.age).to.be.a("number");
+        pm.expect(responseData.age).to.satisfy(
+          age => age >= 0,
+          "Age should be a non-negative integer"
+        );
+      });
     }
   });
 }

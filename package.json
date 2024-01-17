@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postman:tests": "newman run ./collections/Playwright_API_Test.postman_collection.json -e ./enviornments/UAT.postman_environment.json",
-    "convert-to-k6": "postman-to-k6 ./collections/Playwright_API_Test.postman_collection.json -e ./enviornments/UAT.postman_environment.json -o k6-script.js",
+    "postman:uat-tests": "newman run ./collections/Playwright_API_Test.postman_collection.json -e ./enviornments/UAT.postman_environment.json",
+    "postman:performance-tests": "newman run ./collections/Performance_Testing.postman_collection.json -e ./enviornments/Performance_Env.postman_environment.json",
+    "convert-to-k6-uat": "postman-to-k6 ./collections/Playwright_API_Test.postman_collection.json -e ./enviornments/UAT.postman_environment.json -o k6-script.js",
+    "convert-to-k6-performance": "postman-to-k6 ./collections/Performance_Testing.postman_collection.json -e ./enviornments/Performance_Env.postman_environment.json -o k6-script.js",
     "performance-tests": "k6 run k6-script.js --summary-trend-stats=\"avg,p(90),p(99.9),p(99.99),count\" --out json=test.csv"
   },
   "keywords": [],
