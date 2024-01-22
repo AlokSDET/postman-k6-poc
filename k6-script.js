@@ -4,7 +4,16 @@ import "./libs/shim/core.js";
 import "./libs/shim/expect.js";
 import "./libs/shim/urijs.js";
 
-export let options = { maxRedirects: 4 };
+
+export let options = {
+  maxRedirects: 4,
+  duration: '1m',
+  vus: 50,
+  thresholds: {
+    http_req_failed: ['rate<0.01'], // http errors should be less than 1%
+    http_req_duration: ['p(95)<1000'], // 95 percent of response times must be below 500ms
+  },
+};
 
 const Request = Symbol.for("request");
 postman[Symbol.for("initial")]({
@@ -14,18 +23,18 @@ postman[Symbol.for("initial")]({
   }
 });
 
-export default function() {
+export default function () {
   postman[Request]({
     name: "Get Crocodiles",
     id: "668d6907-0f2c-4c1f-992d-2cb6847a4646",
     method: "GET",
     address: "{{BASE_URL}}/public/crocodiles/",
     post(response) {
-      pm.test("Response status code is 200", function() {
+      pm.test("Response status code is 200", function () {
         pm.response.to.have.status(200);
       });
 
-      pm.test("Response has the required fields", function() {
+      pm.test("Response has the required fields", function () {
         const responseData = pm.response.json();
 
         pm.expect(responseData).to.be.an("array");
@@ -38,20 +47,20 @@ export default function() {
         });
       });
 
-      pm.test("Date of birth is in a valid date format", function() {
+      pm.test("Date of birth is in a valid date format", function () {
         const responseData = pm.response.json();
 
         pm.expect(responseData).to.be.an("array");
-        responseData.forEach(function(crocodile) {
+        responseData.forEach(function (crocodile) {
           pm.expect(crocodile.date_of_birth).to.match(/^\d{4}-\d{2}-\d{2}$/);
         });
       });
 
-      pm.test("Age is a non-negative integer", function() {
+      pm.test("Age is a non-negative integer", function () {
         const responseData = pm.response.json();
 
         pm.expect(responseData).to.be.an("array");
-        responseData.forEach(function(crocodile) {
+        responseData.forEach(function (crocodile) {
           pm.expect(crocodile.age)
             .to.be.a("number")
             .and.to.satisfy(
@@ -61,7 +70,7 @@ export default function() {
         });
       });
 
-      pm.test("Content type is application/json", function() {
+      pm.test("Content type is application/json", function () {
         pm.expect(pm.response.headers.get("Content-Type")).to.include(
           "application/json"
         );
@@ -75,13 +84,13 @@ export default function() {
     method: "GET",
     address: "https://test-api.k6.io/public/crocodiles/1/",
     post(response) {
-      pm.test("Response status code is 200", function() {
+      pm.test("Response status code is 200", function () {
         pm.response.to.have.status(200);
       });
 
       pm.test(
         "Response has the required fields - id, name, sex, date_of_birth, and age",
-        function() {
+        function () {
           const responseData = pm.response.json();
 
           pm.expect(responseData).to.be.an("object");
@@ -93,7 +102,7 @@ export default function() {
         }
       );
 
-      pm.test("Name is a non-empty string", function() {
+      pm.test("Name is a non-empty string", function () {
         const responseData = pm.response.json();
 
         pm.expect(responseData).to.be.an("object");
@@ -102,14 +111,14 @@ export default function() {
           .and.to.have.lengthOf.at.least(1, "Name should not be empty");
       });
 
-      pm.test("Date of birth is in a valid date format", function() {
+      pm.test("Date of birth is in a valid date format", function () {
         const responseData = pm.response.json();
 
         pm.expect(responseData).to.be.an("object");
         pm.expect(responseData.date_of_birth).to.match(/^\d{4}-\d{2}-\d{2}$/);
       });
 
-      pm.test("Age is a non-negative integer", function() {
+      pm.test("Age is a non-negative integer", function () {
         const responseData = pm.response.json();
 
         pm.expect(responseData).to.be.an("object");

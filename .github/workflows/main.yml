@@ -2,7 +2,7 @@ name: Main Workflow
 on: [push]
 jobs:
   build:
-    name: Run k6 test
+    name: Run Local k6 test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
