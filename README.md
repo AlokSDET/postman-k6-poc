@@ -1,7 +1,7 @@
 ---
 runme:
   id: 01HMBGE4D0EX65QAN11F5P197E
-  version: v2.2
+  version: v3
 ---
 
 # postman-k6-poc
@@ -28,6 +28,7 @@ we can create test cases in Test Builder grafana, can record test using k6 plugi
 K6 is for dashboard
 Grafana is to create new test cases  by test script or builder or even recorded tests will be saved in grafana default project.
 Out in json file  - 'k6 run k6_script.js --out json=file.json'
-
+Out in json file  - 'k6 run k6_script.js --out csv=file.csv'
+Debug in http mode - '--http-debug ="full"'
 
 ```

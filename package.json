@@ -6,10 +6,16 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "postman:uat-tests": "newman run ./collections/Playwright_API_Test.postman_collection.json -e ./enviornments/UAT.postman_environment.json",
+    "convert-to-k6-uat": "postman-to-k6 ./collections/Playwright_API_Test.postman_collection.json -e ./enviornments/UAT.postman_environment.json -o ./k6_scripts/k6-script-uat.js",
+    "k6-uat-tests": "k6 run ./k6_scripts/k6-script-uat.js --summary-trend-stats=\"avg,p(90),p(99.9),p(99.99),count\" --out json=test.csv",
     "postman:performance-tests": "newman run ./collections/Performance_Testing.postman_collection.json -e ./enviornments/Performance_Env.postman_environment.json",
-    "convert-to-k6-uat": "postman-to-k6 ./collections/Playwright_API_Test.postman_collection.json -e ./enviornments/UAT.postman_environment.json -o k6-script.js",
-    "convert-to-k6-performance": "postman-to-k6 ./collections/Performance_Testing.postman_collection.json -e ./enviornments/Performance_Env.postman_environment.json -o k6-script.js",
-    "performance-tests": "k6 run k6-script.js --summary-trend-stats=\"avg,p(90),p(99.9),p(99.99),count\" --out json=test.csv"
+    "convert-to-k6-performance": "postman-to-k6 ./collections/Performance_Testing.postman_collection.json -e ./enviornments/Performance_Env.postman_environment.json -o ./k6_scripts/k6-script-performance.js",
+    "k6-performance-tests": "k6 run ./k6_scripts/k6-script-performance.js --summary-trend-stats=\"avg,p(90),p(99.9),p(99.99),count\" --out json=test.csv",
+    "postman:anthology-tests": "newman run ./collections/ClassSchedule_PW.postman_collection.json",
+    "convert-to-k6-anthology": "postman-to-k6 ./collections/ClassSchedule_PW.postman_collection.json -o ./k6_scripts/k6-script-anthology.js",
+    "k6-anthology-tests": "k6 run ./k6_scripts/k6_ClassSchedule_PW.postman_collection.js --summary-trend-stats=\"avg,p(90),p(99.9),p(99.99),count\" --out json=test.json",
+    "convert:uat": "node convert_postman_k6.js uat",
+    "k6-execution-report": "node k6_execution_report_generation.js "
   },
   "keywords": [],
   "author": "",
