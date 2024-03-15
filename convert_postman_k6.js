@@ -10,8 +10,10 @@ const COLLECTIONS_FOLDER = path.join(__dirname, 'collections');
 const K6_SCRIPT_FOLDER = path.join(__dirname, 'k6_scripts');
 
 if (fs.existsSync(K6_SCRIPT_FOLDER)) {
-  fs.rmSync(K6_SCRIPT_FOLDER, {recursive: true})
+  fs.rmdirSync(K6_SCRIPT_FOLDER, {recursive: true})
 }
+
+
 
 // Read the contents of the collections folder
 fs.readdir(COLLECTIONS_FOLDER, (err, files) => {
