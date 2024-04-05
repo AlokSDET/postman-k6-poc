@@ -22,7 +22,7 @@ postman[Symbol.for("initial")]({
 export default function() {
   postman[Request]({
     name: "Get data",
-    id: "066230bf-5d70-4a88-98f0-0fcd15a4a2b5",
+    id: "df246905-a21c-4dc2-8486-6ce60ca4d1a8",
     method: "POST",
     address:
       "https://sisclientweb-900149.campusnexus.dev/api/commands/Academics/ClassSection/Get",
@@ -94,7 +94,7 @@ export default function() {
 
   postman[Request]({
     name: "Post data",
-    id: "0fcc8faa-c389-4cfd-871f-280fe0e71398",
+    id: "085d9ba4-6499-4430-8c7d-9df9cfb8fa22",
     method: "POST",
     address: "{{base_url}}/api/commands/Academics/ClassSection/Save",
     data: "{{gSaveNewRequestBody}}",
@@ -188,7 +188,7 @@ import { textSummary } from "https://jslib.k6.io/k6-summary/0.0.1/index.js";
 
 export function handleSummary(data) {
   return {
-    "k6_ClassSchedule_PW.postman_collection.html": htmlReport(data),
+    "reports/k6_ClassSchedule_PW.postman_collection.html": htmlReport(data),
     stdout: textSummary(data, { indent: " ", enableColors: true }),
   };
 }

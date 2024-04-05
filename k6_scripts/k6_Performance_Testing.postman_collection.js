@@ -17,7 +17,7 @@ postman[Symbol.for("initial")]({
 export default function() {
   postman[Request]({
     name: "Get Crocodiles",
-    id: "4f038140-66e5-4f8f-be61-82e3f8d8c011",
+    id: "ef4feda6-85d6-4d8d-b768-f0fe6792e7c0",
     method: "GET",
     address: "{{BASE_URL}}/public/crocodiles/",
     post(response) {
@@ -71,7 +71,7 @@ export default function() {
 
   postman[Request]({
     name: "Get Crocodile 1",
-    id: "51f1d735-ca40-4b95-87e5-9fd899ffc695",
+    id: "23770d06-906b-4262-abe5-0b6d53662fe8",
     method: "GET",
     address: "https://test-api.k6.io/public/crocodiles/1/",
     post(response) {
@@ -129,7 +129,7 @@ import { textSummary } from "https://jslib.k6.io/k6-summary/0.0.1/index.js";
 
 export function handleSummary(data) {
   return {
-    "k6_Performance_Testing.postman_collection.html": htmlReport(data),
+    "reports/k6_Performance_Testing.postman_collection.html": htmlReport(data),
     stdout: textSummary(data, { indent: " ", enableColors: true }),
   };
 }

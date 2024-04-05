@@ -70,7 +70,8 @@
 							"});",
 							""
 						],
-						"type": "text/javascript"
+						"type": "text/javascript",
+						"packages": {}
 					}
 				}
 			],
@@ -80,7 +81,7 @@
 					"basic": [
 						{
 							"key": "password",
-							"value": "XSGLqAGQjgQLn2v",
+							"value": "ZetaTitans@12",
 							"type": "string"
 						},
 						{
@@ -113,12 +114,9 @@
 					}
 				},
 				"url": {
-					"raw": "https://sisclientweb-900149.campusnexus.dev/api/commands/Academics/ClassSection/Get",
-					"protocol": "https",
+					"raw": "{{base_url}}/api/commands/Academics/ClassSection/Get",
 					"host": [
-						"sisclientweb-900149",
-						"campusnexus",
-						"dev"
+						"{{base_url}}"
 					],
 					"path": [
 						"api",
@@ -144,6 +142,12 @@
 							"    pm.response.to.have.status(200);",
 							"});",
 							"",
+							"",
+							"pm.test(\"test grlobal test course code\", function () {",
+							"    const responseData = pm.response.json();",
+							"    console.log(responseData.payload.data.courseCode)",
+							"     pm.expect(responseData.payload.data.courseCode).equal('GS6385');",
+							"});",
 							"",
 							"pm.test(\"Meeting patterns array is present and has expected number of elements\", function () {",
 							"    const responseData = pm.response.json();",
@@ -198,7 +202,8 @@
 							"",
 							""
 						],
-						"type": "text/javascript"
+						"type": "text/javascript",
+						"packages": {}
 					}
 				}
 			],
@@ -208,7 +213,7 @@
 					"basic": [
 						{
 							"key": "password",
-							"value": "XSGLqAGQjgQLn2v",
+							"value": "ZetaTitans@12",
 							"type": "string"
 						},
 						{
