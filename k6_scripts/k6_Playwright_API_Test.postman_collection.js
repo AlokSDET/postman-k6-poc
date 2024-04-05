@@ -28,7 +28,7 @@ files[
 export default function() {
   postman[Request]({
     name: "Registration",
-    id: "12ecb0e3-a81f-4fc3-bab0-4a19c1a019dd",
+    id: "13048dd7-7a7a-4896-8efd-d938a447d6f7",
     method: "POST",
     address: "http://restapi.adequateshop.com/api/authaccount/registration",
     data:
@@ -75,7 +75,7 @@ export default function() {
 
   postman[Request]({
     name: "Login",
-    id: "aefeba7f-45f5-4acd-900f-5ec8820905ee",
+    id: "eaae21f5-21a4-45b6-8171-b2b872d1cc1d",
     method: "POST",
     address: "http://restapi.adequateshop.com/api/authaccount/login",
     data: '{\r\n\t"email":"alok.s@gmail.com",\r\n\t"password":123456\r\n}',
@@ -90,7 +90,7 @@ export default function() {
 
   postman[Request]({
     name: "Get users from page 1",
-    id: "71560831-3ded-4d55-891f-099d25099bdc",
+    id: "1b0c20f5-1801-442a-b17f-577867d0fb1f",
     method: "GET",
     address: "http://restapi.adequateshop.com/api/users?page=1",
     headers: {
@@ -125,7 +125,7 @@ export default function() {
 
   postman[Request]({
     name: "User Details",
-    id: "8b569d7d-723c-49eb-82a4-e61f75865c62",
+    id: "adce6792-985d-4021-834b-f4d2ae9cd31e",
     method: "GET",
     address: "http://restapi.adequateshop.com/api/users/292528",
     headers: {
@@ -135,7 +135,7 @@ export default function() {
 
   postman[Request]({
     name: "Create User",
-    id: "dd5b3e54-2c0b-4f4b-96b9-ec6f1a4ebdad",
+    id: "1780ff81-4199-4a70-bd04-369cf03f48e6",
     method: "POST",
     address: "http://restapi.adequateshop.com/api/users",
     data:
@@ -147,7 +147,7 @@ export default function() {
 
   postman[Request]({
     name: "update user details",
-    id: "9b79d1cd-4cca-4d54-8780-6a26cee5fdda",
+    id: "c279e3b1-b90d-46ea-9800-cd58ac260afa",
     method: "PUT",
     address: "http://restapi.adequateshop.com/api/users/292528",
     data:
@@ -159,7 +159,7 @@ export default function() {
 
   postman[Request]({
     name: "Delete uSER",
-    id: "64b98ebc-1928-4b95-82aa-53d56bf8dd39",
+    id: "7b3ac317-3f2d-4e03-aa7a-052311394f8d",
     method: "DELETE",
     address: "http://restapi.adequateshop.com/api/users/292528",
     headers: {
@@ -169,7 +169,7 @@ export default function() {
 
   postman[Request]({
     name: "https://fakestoreapi.com/products/1",
-    id: "b5ec9971-ca7c-4eeb-a66b-e817917809c2",
+    id: "c8bf4fb5-ee43-4316-b515-baf6390f8b6d",
     method: "GET",
     address: "https://fakestoreapi.com/products/1",
     post(response) {
@@ -207,7 +207,7 @@ export default function() {
 
   postman[Request]({
     name: "https://api.escuelajs.co/api/v1/files/upload",
-    id: "b666e45c-a418-4ec7-8f7a-dd15b80045fd",
+    id: "2983bb82-2d05-4217-bc2b-379c79bff846",
     method: "POST",
     address: "https://api.escuelajs.co/api/v1/files/upload",
     data: {

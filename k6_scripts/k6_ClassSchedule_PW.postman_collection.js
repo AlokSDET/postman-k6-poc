@@ -22,10 +22,9 @@ postman[Symbol.for("initial")]({
 export default function() {
   postman[Request]({
     name: "Get data",
-    id: "df246905-a21c-4dc2-8486-6ce60ca4d1a8",
+    id: "77d6cf84-a800-4472-947b-c37b75465b7c",
     method: "POST",
-    address:
-      "https://sisclientweb-900149.campusnexus.dev/api/commands/Academics/ClassSection/Get",
+    address: "{{base_url}}/api/commands/Academics/ClassSection/Get",
     data: '{\r\n    "payload": {\r\n        "id": 8723\r\n    }\r\n}',
     headers: {
       Accept: "application/json",
@@ -86,7 +85,7 @@ export default function() {
     auth(config, Var) {
       const address = new URI(config.address);
       address.username("automationuser@CampusNexus.Dev");
-      address.password("XSGLqAGQjgQLn2v");
+      address.password("ZetaTitans@12");
       config.address = address.toString();
       config.options.auth = "basic";
     }
@@ -94,7 +93,7 @@ export default function() {
 
   postman[Request]({
     name: "Post data",
-    id: "085d9ba4-6499-4430-8c7d-9df9cfb8fa22",
+    id: "698fd2da-746a-4367-8ae4-5f7601371f21",
     method: "POST",
     address: "{{base_url}}/api/commands/Academics/ClassSection/Save",
     data: "{{gSaveNewRequestBody}}",
@@ -105,6 +104,12 @@ export default function() {
     post(response) {
       pm.test("Response status code is 200", function() {
         pm.response.to.have.status(200);
+      });
+
+      pm.test("test grlobal test course code", function() {
+        const responseData = pm.response.json();
+        console.log(responseData.payload.data.courseCode);
+        pm.expect(responseData.payload.data.courseCode).equal("GS6385");
       });
 
       pm.test(
@@ -175,7 +180,7 @@ export default function() {
     auth(config, Var) {
       const address = new URI(config.address);
       address.username("automationuser@CampusNexus.Dev");
-      address.password("XSGLqAGQjgQLn2v");
+      address.password("ZetaTitans@12");
       config.address = address.toString();
       config.options.auth = "basic";
     }

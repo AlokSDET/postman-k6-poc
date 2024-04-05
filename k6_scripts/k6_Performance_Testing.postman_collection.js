@@ -17,7 +17,7 @@ postman[Symbol.for("initial")]({
 export default function() {
   postman[Request]({
     name: "Get Crocodiles",
-    id: "ef4feda6-85d6-4d8d-b768-f0fe6792e7c0",
+    id: "d92d581d-304b-4b4d-9162-376d1ac6166d",
     method: "GET",
     address: "{{BASE_URL}}/public/crocodiles/",
     post(response) {
@@ -71,7 +71,7 @@ export default function() {
 
   postman[Request]({
     name: "Get Crocodile 1",
-    id: "23770d06-906b-4262-abe5-0b6d53662fe8",
+    id: "1b053c11-aad4-4bc7-921b-f633401d25bf",
     method: "GET",
     address: "https://test-api.k6.io/public/crocodiles/1/",
     post(response) {

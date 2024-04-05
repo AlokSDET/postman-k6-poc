@@ -4,10 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "convert:uat": "node convert_postman_k6.js uat",
+    "convert:uat": "node convert_postman_k6.js anthology_uat",
     "k6-execution-report": "node k6_execution_report_generation.js",
     "postman-to-k6-result": "node convert_postman_k6.js uat && node k6_execution_report_generation.js",
     "newman" : "newman run ./collections/ClassSchedule_PW.postman_collection.json -e ./enviornments/uat.json",
+    "newman-with-data" : "newman run ./collections/FT_Assignment_Types_Functional.postman_collection.json -e ./enviornments/bpt.json -d ./testdata/FT_Assignment.json",
     "postman-to-k6": "postman-to-k6 ./collections/Playwright_API_Test.postman_collection.json -e ./enviornments/UAT.postman_environment.json -o k6-script.js",
     "k6:test": "k6 run k6-script.js --summary-trend-stats=\"avg,p(90),p(99.9),p(99.99),count\" --out json=test.csv"
   },
