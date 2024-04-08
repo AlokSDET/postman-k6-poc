@@ -14,13 +14,35 @@ const COLLECTIONS_FOLDER_DATA = path.join(__dirname, 'collections', 'collections
 const COLLECTIONS_FOLDER_WITHOUT_DATA = path.join(__dirname, 'collections', 'collections_withOUT_data');
 let K6_SCRIPT_FOLDER = path.join(__dirname, 'k6_scripts');
 
+
+//----
+function deleteFolderRecursive(folderPath) {
+  if (fs.existsSync(folderPath)) {
+      fs.readdirSync(folderPath).forEach((file, index) => {
+          const curPath = path.join(folderPath, file);
+          if (fs.lstatSync(curPath).isDirectory()) { // recurse
+              deleteFolderRecursive(curPath);
+          } else { // delete file
+              fs.unlinkSync(curPath);
+          }
+      });
+      fs.rmdirSync(folderPath);
+      console.log(`Deleted folder: ${folderPath}`);
+  } else {
+      console.error(`Folder ${folderPath} does not exist.`);
+  }
+}
+
+deleteFolderRecursive(K6_SCRIPT_FOLDER)
+
+//----
+/*
 if (fs.existsSync(K6_SCRIPT_FOLDER)) {
   fs.rmdirSync(K6_SCRIPT_FOLDER, { recursive: true })
 }
-
 K6_SCRIPT_FOLDER = path.join(__dirname, 'k6_scripts');
 console.log(K6_SCRIPT_FOLDER)
-
+*/
 
 // Read the contents of the collections folder
 fs.readdir(COLLECTIONS_FOLDER_WITHOUT_DATA, (err, files) => {

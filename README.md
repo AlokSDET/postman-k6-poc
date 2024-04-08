@@ -17,10 +17,9 @@ it will generate the report in html file.
 
 1. Import all collections from postman to this project under collections folder.
 2. Import all enviornments from postman to this project under enviornment folder.
-3. Rename the imported enviornment files in uat or sit or prod 
+3. Import all test data and keep under testdata folder in csv or json format.
 4. Execute below scripts to convert postman collections to k6 script-
-'node convert_postman_k6.js uat'  // here uat is environment we need to pass as command line argument.
-you can pass sit or prod or any name which matches with your enviornment file.
+'node convert_postman_k6.js uat testdata.json'  // here uat is environment file namewe need to pass as command line argument. testdata.json is test data file .
 5. Execute below scripts to execute k6 script to generate the matrix and html report.
 'node k6_execution_report_generation.js'
 6. If you face any issue in deleting folder , please retry to execute steps 4 multiple time untill you get success.
