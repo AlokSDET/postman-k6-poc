@@ -7,19 +7,36 @@ import { group } from "k6";
 
 export let options = { maxRedirects: 4 };
 
+const file = (() => {
+  // Load data file
+  const text = open("./data.json");
+  const rows = JSON.parse(text);
+  return rows;
+})();
+options.iterations = file.length;
+
+const Iteration = Symbol.for("iteration");
 const Request = Symbol.for("request");
 postman[Symbol.for("initial")]({
   options,
   environment: {
-    base_url: "https://jsonplaceholder.typicode.com/"
-  }
+    envWebHost: "sisclientweb-900162.campusnexus.dev",
+    envAuthUser: "Administrator",
+    envAuthPassword: "testing",
+    envWebScheme: "https",
+    envCollection:
+      "/api/faculty-workload-hr-integration/job-functions-collection"
+  },
+  data: file
 });
 
 export default function() {
+  postman[Iteration]();
+
   group("New Folder", function() {
     postman[Request]({
       name: "Initialize",
-      id: "534879ea-2344-4774-9e0f-c9c1dfc861eb",
+      id: "37738cfe-ce09-4e33-ae72-028ed3e40125",
       method: "GET",
       address: "{{gApiUrl}}",
       headers: {
@@ -80,7 +97,7 @@ export default function() {
 
     postman[Request]({
       name: "Get Campus ID",
-      id: "f8e20128-67cd-4f0e-96f3-933bf6545d0f",
+      id: "8a34b8f7-c1ae-46bb-8906-f7323d91e63c",
       method: "GET",
       address: "{{gUrl}}",
       headers: {
@@ -167,7 +184,7 @@ export default function() {
 
     postman[Request]({
       name: "Create",
-      id: "68707259-20a7-4656-b174-4e0d3d2922a3",
+      id: "40eb535f-8693-4663-a301-1bd9f6f28673",
       method: "POST",
       address: "{{gUrl}}",
       data: "{{gCreateRequestBody}}",
@@ -255,7 +272,7 @@ export default function() {
 
     postman[Request]({
       name: "SaveNew Overload Assignment",
-      id: "523dceb9-606e-4d49-b531-b3f10022148f",
+      id: "3bdec63e-de53-4cd8-8515-e633cefa490e",
       method: "POST",
       address: "{{gUrl}}",
       data: "{{gSaveRequestBody}}",
@@ -342,7 +359,7 @@ export default function() {
 
     postman[Request]({
       name: "SaveNew onload Assignment type linked to overload assignment type",
-      id: "6a341874-443a-4b2a-bbd1-d7e1f79b35da",
+      id: "851ef29e-58a2-4903-a136-7d3be3b87990",
       method: "POST",
       address: "{{gUrl}}",
       data: "{{gSaveRequestBody}}",
@@ -429,7 +446,7 @@ export default function() {
 
     postman[Request]({
       name: "Get After SaveNew onload Assignment type",
-      id: "d805367b-75f5-46aa-b83e-1fe54b064b47",
+      id: "7f400217-608f-4b62-8c18-5c80f14e77db",
       method: "POST",
       address: "{{gUrl}}",
       data: "{{gGetRequestBody}}",
@@ -515,7 +532,7 @@ export default function() {
 
     postman[Request]({
       name: "Save onload assignment type",
-      id: "6b6e965f-166f-4440-861f-3077e8e10d1a",
+      id: "3c8affc9-b536-49da-9a9a-ab5c0582007b",
       method: "POST",
       address: "{{gUrl}}",
       data: "{{gSaveRequestBody}}",
@@ -603,7 +620,7 @@ export default function() {
 
     postman[Request]({
       name: "Create Load Validation Policy",
-      id: "1199d761-8cce-46f5-9801-20c53efb0ea5",
+      id: "d4b02d96-40d7-4355-99df-842b29e3a520",
       method: "POST",
       address: "{{gUrl}}",
       data: "{{gCreateRequestBody}}",
@@ -691,7 +708,7 @@ export default function() {
 
     postman[Request]({
       name: "SaveNew Load Validation Policy",
-      id: "600893fe-d990-49e0-80fb-db86a2570f3f",
+      id: "9980887d-09c8-4ce6-9cd1-220edc4ed752",
       method: "POST",
       address: "{{gUrl}}",
       data: "{{gSaveRequestBody}}",
@@ -778,7 +795,7 @@ export default function() {
 
     postman[Request]({
       name: "Get  onload assignment type",
-      id: "67c7756d-2a91-4885-bb6b-686880a84bfc",
+      id: "45e044cf-daaa-4971-a8f6-f34fa71f6852",
       method: "POST",
       address: "{{gUrl}}",
       data: "{{gGetRequestBody}}",
@@ -866,7 +883,7 @@ export default function() {
 
     postman[Request]({
       name: "Delete Load Rule",
-      id: "4a86fd6b-d6d9-42e8-a75b-7c9e7eafe0ca",
+      id: "d0841c2c-dc6c-4931-b405-153f63710413",
       method: "POST",
       address: "{{gUrl}}",
       data: "{{gDeleteRequestBody}}",
@@ -954,7 +971,7 @@ export default function() {
 
     postman[Request]({
       name: "Get Load Rule",
-      id: "f2f34bf2-f896-416a-90a4-27f9e6527ed3",
+      id: "7b62c510-8406-4c29-a1b8-2dd611dd4544",
       method: "POST",
       address: "{{gUrl}}",
       data: "{{gGetRequestBody}}",
@@ -1042,7 +1059,7 @@ export default function() {
 
     postman[Request]({
       name: "Delete onload assignment type association check",
-      id: "111040a3-91b2-4acc-9bef-8a279df59b68",
+      id: "f8821dd6-8b89-4e6b-acfb-75dd6340c99e",
       method: "POST",
       address: "{{gUrl}}",
       data: "{{gDeleteRequestBody}}",
@@ -1130,7 +1147,7 @@ export default function() {
 
     postman[Request]({
       name: "Get overload assignment type",
-      id: "a36dfea7-8161-496b-a7fe-4263efec03fc",
+      id: "8b7529e0-ff5e-4c84-a43c-9a364c992831",
       method: "POST",
       address: "{{gUrl}}",
       data: "{{gGetRequestBody}}",
@@ -1218,7 +1235,7 @@ export default function() {
 
     postman[Request]({
       name: "Delete overload assignment type Cross Validation",
-      id: "3808908e-ced1-44f3-92f6-1fa4eb4f7cdf",
+      id: "e07b09d5-d71e-450e-8b77-ba7e46674a1a",
       method: "POST",
       address: "{{gUrl}}",
       data: "{{gDeleteRequestBody}}",
@@ -1306,7 +1323,7 @@ export default function() {
 
     postman[Request]({
       name: "Get After Save onload assignment type",
-      id: "ce7407cd-ba80-4fd4-aad0-2646c860ccb6",
+      id: "25320382-9ee5-4ee8-a32a-301517539850",
       method: "POST",
       address: "{{gUrl}}",
       data: "{{gGetRequestBody}}",
@@ -1394,7 +1411,7 @@ export default function() {
 
     postman[Request]({
       name: "Delete onload assignment type",
-      id: "54023482-2cfa-4dde-93cc-86ff0810c9ce",
+      id: "4ce39f9d-b6f9-41af-8a8f-22ebf4e14915",
       method: "POST",
       address: "{{gUrl}}",
       data: "{{gDeleteRequestBody}}",
@@ -1482,7 +1499,7 @@ export default function() {
 
     postman[Request]({
       name: "Get After Delete onload assignment type",
-      id: "fa80801a-a6d0-4352-b6fc-3c6f7f6feabe",
+      id: "9e24fb4c-3f46-4d39-9f6a-9ca8485ffa82",
       method: "POST",
       address: "{{gUrl}}",
       data: "{{gGetRequestBody}}",
@@ -1571,7 +1588,7 @@ export default function() {
 
     postman[Request]({
       name: "Delete overload assignment type",
-      id: "c667f9f8-2e08-4fb3-9861-717a8296ad37",
+      id: "b8809080-1b02-483a-9671-a761887e9868",
       method: "POST",
       address: "{{gUrl}}",
       data: "{{gDeleteRequestBody}}",
@@ -1659,7 +1676,7 @@ export default function() {
 
     postman[Request]({
       name: "Get After Delete overload assignment type",
-      id: "277c2a2c-356a-426d-8e57-dececacb4dfe",
+      id: "28fa0067-3b08-4b76-98bc-3acc00d6e076",
       method: "POST",
       address: "{{gUrl}}",
       data: "{{gGetRequestBody}}",
@@ -1746,15 +1763,4 @@ export default function() {
       }
     });
   });
-}
-
-
-import { htmlReport } from "https://raw.githubusercontent.com/benc-uk/k6-reporter/main/dist/bundle.js";
-import { textSummary } from "https://jslib.k6.io/k6-summary/0.0.1/index.js";
-
-export function handleSummary(data) {
-  return {
-    "reports/k6_FT_Assignment_Types_Functional.postman_collection.html": htmlReport(data),
-    stdout: textSummary(data, { indent: " ", enableColors: true }),
-  };
 }

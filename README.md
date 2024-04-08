@@ -23,6 +23,10 @@ it will generate the report in html file.
 5. Execute below scripts to execute k6 script to generate the matrix and html report.
 'node k6_execution_report_generation.js'
 6. If you face any issue in deleting folder , please retry to execute steps 4 multiple time untill you get success.
+7. if we have to run collection with data then try to keep only one collection at the same time under collections/collections-with-data folder.
+8. if we have to run collection without data then we can keep multiple together under collections/collections-without-data folder.
+9. we can create individual script like postman-to-k6:sample and k6:sample.
+
 
 
 
