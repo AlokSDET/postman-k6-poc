@@ -44,6 +44,7 @@ K6_SCRIPT_FOLDER = path.join(__dirname, 'k6_scripts');
 console.log(K6_SCRIPT_FOLDER)
 */
 
+/*
 // Read the contents of the collections folder
 fs.readdir(COLLECTIONS_FOLDER_WITHOUT_DATA, (err, files) => {
   if (err) {
@@ -67,6 +68,7 @@ fs.readdir(COLLECTIONS_FOLDER_WITHOUT_DATA, (err, files) => {
     }
   })
 });
+*/
 
 
 // Read the contents of the collections folder

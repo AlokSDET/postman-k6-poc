@@ -1,5 +1,5 @@
 {
-	"id": "e5d22c19-f516-4189-bca9-9cbebcfdad93",
+	"id": "c593bd07-6ae2-4381-b6a7-9546f95bc0f0",
 	"name": "BTP_WLAM Student API Automation Environment",
 	"values": [
 		{
@@ -9,12 +9,12 @@
 		},
 		{
 			"key": "envAuthUser",
-			"value": "Administrator",
+			"value": "automationuser@CampusNexus.Dev",
 			"enabled": true
 		},
 		{
 			"key": "envAuthPassword",
-			"value": "testing",
+			"value": "ZetaTitans@12",
 			"enabled": true
 		},
 		{
@@ -29,6 +29,6 @@
 		}
 	],
 	"_postman_variable_scope": "environment",
-	"_postman_exported_at": "2024-03-26T09:36:14.755Z",
-	"_postman_exported_using": "Postman/10.24.3"
+	"_postman_exported_at": "2024-04-12T06:04:14.729Z",
+	"_postman_exported_using": "Postman/10.24.16"
 }
