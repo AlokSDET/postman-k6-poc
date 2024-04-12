@@ -33,6 +33,8 @@ let file2Content = fs.readFileSync(file2Path, 'utf8');
 console.log('file 2 content' + file2Content)
 console.log('file 1 content' + file1Content)
 
+file1Content = file1Content.replace(/pm\[Var\]/g, `pm.globals.get`)
+
 let reportname = file.slice(0,-2)+'html'
 console.log('report name is ' + reportname)
 
@@ -43,6 +45,7 @@ console.log(file2Content)
 // Concatenate the content of file1 and file2
 const mergedContent = file1Content + '\n\n' + file2Content;
  console.log(mergedContent)
+
 // Write the merged content to the output file
 fs.writeFileSync(file1Path, mergedContent, 'utf8');
 

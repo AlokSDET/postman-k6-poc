@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "convert:bpt": "node convert_postman_k6.js test_env.postman_enviornment FT_Assignment_Types.json",
+    "convert:bpt": "node convert_postman_k6.js test_env.postman_enviornment FT_Assignment.json",
     "convert:uat": "node convert_postman_k6.js bpt FT_Assignment.json",
     "k6-execution-report": "node k6_execution_report_generation.js",
     "postman-to-k6-result": "node convert_postman_k6.js uat && node k6_execution_report_generation.js",
