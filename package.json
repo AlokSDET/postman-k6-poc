@@ -13,17 +13,25 @@
     "postman-to-k6:assignment": "postman-to-k6  ./collections/collections_without_data/FT_Assignment_Types_Functional.postman_collection.json -e ./enviornments/bpt.json --json ./testdata/FT_Assignment.json -o ./k6_scripts/k6-script-assignment.js",
     "postman-to-k6:sample": "postman-to-k6  ./collections/collections_with_data/test_coll.postman_collection.json -e ./enviornments/test_env.postman_enviornment.json --json ./testdata/FT_Assignment_Types.json -o ./k6_scripts/k6-script-sample.js",
     "k6:sample": "k6 run ./k6_scripts/k6-script-sample.js --summary-trend-stats=\"avg,p(90),p(99.9),p(99.99),count\" --out json=test.csv",
-    "k6:assignment": "k6 run ./k6_scripts/k6-script-assignment.js --summary-trend-stats=\"avg,p(90),p(99.9),p(99.99),count\" --out json=test.csv"
+    "k6:assignment": "k6 run ./k6_scripts/k6-script-assignment.js --summary-trend-stats=\"avg,p(90),p(99.9),p(99.99),count\" --out json=test.csv",
+    "demo_test_newman": "newman run ./collections/demo_test/25_July_Demo.postman_collection.json -e ./enviornments/demo_test.postman_environment.json",
+    "postman-to-k6:demo_test": "postman-to-k6  ./collections/demo_test/25_July_Demo_k6.postman_collection.json -e ./enviornments/demo_test.postman_environment.json -o ./k6_scripts/k6-script-demo_test.js",
+    "run_k6:demo_test": "k6 run ./k6_scripts/k6-script-demo_test.js --vus 5 --duration 5s --summary-trend-stats=\"avg,p(90),p(99.9),p(99.99),count\" --out json=test.json",
+    "playwright-test": "npx playwrigh test"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^16.4.5",
     "k6": "^0.0.0",
-    "k6-html-reporter": "^1.0.5"
+    "k6-html-reporter": "^1.0.5",
+    "newman": "^6.1.3"
   },
   "devDependencies": {
     "@apideck/postman-to-k6": "^1.9.0",
+    "@playwright/test": "^1.45.3",
+    "@types/node": "^20.14.12",
     "postman-to-k6": "git://github.com/thim81/postman-to-k6#1.1.2"
   }
 }
