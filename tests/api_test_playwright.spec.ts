@@ -1,5 +1,7 @@
 import { test, expect }  from '@playwright/test';
 
+import testdata from '../testdata/login.json'
+
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -12,10 +14,13 @@ const response = await request.post('api/v1/auth/login', {
     'Content-Type': 'application/json',
     'Accept': 'application/json'
     },
-  data: {
-    email: 'john@mail.com',
-    password: 'changeme',
+  data: testdata
+ /* data: {
+"email": "john@mail.com",
+"password": "changeme"
   }
+  */
+  
 });
 
 expect(response.status()).toBe(201);

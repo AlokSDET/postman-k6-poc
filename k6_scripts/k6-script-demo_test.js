@@ -21,7 +21,7 @@ postman[Symbol.for("initial")]({
 export default function() {
   postman[Request]({
     name: "get all products",
-    id: "ff2d47e8-bc68-4f35-b479-06df7621b973",
+    id: "920c35ab-7b58-4370-a5b7-b1f7e2146a15",
     method: "GET",
     address: "{{url_product}}/api/v1/products",
     post(response) {
@@ -33,7 +33,7 @@ export default function() {
 
   postman[Request]({
     name: "get products filter by price",
-    id: "322e3e81-b701-4633-9195-d3ed5b257746",
+    id: "3888e643-4ebc-4cb6-838f-5b81b5936619",
     method: "GET",
     address: "{{url_product}}/api/v1/products/?price=100",
     post(response) {
