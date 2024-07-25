@@ -1,0 +1,245 @@
+{
+  "name": "25_July_Demo",
+  "version": "1",
+  "items": [
+    {
+      "type": "http",
+      "name": "File upload",
+      "seq": 6,
+      "request": {
+        "url": "https://petstore.swagger.io/v2/pet/9223372036854611000/uploadImage",
+        "method": "POST",
+        "headers": [
+          {
+            "name": "",
+            "value": "",
+            "enabled": true
+          }
+        ],
+        "params": [],
+        "body": {
+          "mode": "multipartForm",
+          "formUrlEncoded": [],
+          "multipartForm": [
+            {
+              "type": "file",
+              "name": "file",
+              "value": [
+                "/Users/aloksh/Downloads/visual_diff.png"
+              ],
+              "enabled": true
+            }
+          ]
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "auth": {
+          "mode": "none"
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "Query param",
+      "seq": 4,
+      "request": {
+        "url": "https://demoqa.com/BookStore/v1/Book?ISBN=9781449325862",
+        "method": "GET",
+        "headers": [],
+        "params": [
+          {
+            "name": "ISBN",
+            "value": "9781449325862",
+            "type": "query",
+            "enabled": true
+          }
+        ],
+        "body": {
+          "mode": "none",
+          "formUrlEncoded": [],
+          "multipartForm": []
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "auth": {
+          "mode": "none"
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "authenticate profile using bearer",
+      "seq": 5,
+      "request": {
+        "url": "https://api.escuelajs.co/api/v1/auth/profile",
+        "method": "GET",
+        "headers": [
+          {
+            "name": "Authorization",
+            "value": "Bearer {{access_token}}",
+            "enabled": true
+          }
+        ],
+        "params": [],
+        "body": {
+          "mode": "none",
+          "formUrlEncoded": [],
+          "multipartForm": []
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "auth": {
+          "mode": "none"
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "bearer token generate",
+      "seq": 2,
+      "request": {
+        "url": "https://api.escuelajs.co/api/v1/auth/login",
+        "method": "POST",
+        "headers": [],
+        "params": [],
+        "body": {
+          "mode": "json",
+          "json": "{\n  \"email\": \"john@mail.com\",\n  \"password\": \"changeme\"\n}",
+          "formUrlEncoded": [],
+          "multipartForm": []
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "var rb = res.getBody();\n\nlet access_token = rb.access_token\n\nbru.setEnvVar(\"access_token\", access_token);",
+        "auth": {
+          "mode": "none"
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "global env path script",
+      "seq": 3,
+      "request": {
+        "url": "{{base_url}}/products/add",
+        "method": "POST",
+        "headers": [
+          {
+            "name": "{{gAuthHeaderKey}}",
+            "value": "{{gAuthHeaderValue}}",
+            "enabled": true
+          }
+        ],
+        "params": [],
+        "body": {
+          "mode": "json",
+          "json": "{\n\"title\": \"{{title}}\"\n}",
+          "formUrlEncoded": [],
+          "multipartForm": []
+        },
+        "script": {
+          "req": "\n// pm.globals.set('title', \"bmw\");"
+        },
+        "vars": {},
+        "assertions": [],
+        "tests": "test('Successful POST request', function () {\n    expect(res.getStatus()).to.be.oneOf([\n        200,\n        201\n    ]);\n})\n\n\nvar responseBody = res.getBody();\n\ntest(`Check if response is having bmw`, function () {\n   \n        expect(responseBody.title).to.eql('bmw');\n\n})\n\ntest(\"Response time is less than 200ms\", function () {\n  expect(res.getResponseTime()).to.be.below(200);\n});",
+        "auth": {
+          "mode": "none"
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "https---restful-booker-herokuapp-com-booking",
+      "seq": 1,
+      "request": {
+        "url": "https://restful-booker.herokuapp.com/booking",
+        "method": "GET",
+        "headers": [],
+        "params": [],
+        "body": {
+          "mode": "none",
+          "formUrlEncoded": [],
+          "multipartForm": []
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "auth": {
+          "mode": "none"
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "postman tets boat newman",
+      "seq": 7,
+      "request": {
+        "url": "{{base_url}}/products/add",
+        "method": "POST",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": "application/json",
+            "enabled": true
+          }
+        ],
+        "params": [],
+        "body": {
+          "mode": "json",
+          "json": "{\n\"title\": \"{{title}}\"\n}",
+          "formUrlEncoded": [],
+          "multipartForm": []
+        },
+        "script": {
+          "req": "// //pm.globals.set('title', \"mercedez\");"
+        },
+        "vars": {},
+        "assertions": [],
+        "tests": "test(\"Response time is less than 200ms\", function () {\n  expect(res.getResponseTime()).to.be.below(200);\n});\n\ntest(\"Response status code is 200\", function () {\n    expect(res.getStatus()).to.equal(200);\n});\n\n\ntest(\"Content-Type header is application/json\", function () {\n//     expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\n});\n\n\ntest(\"Response has the required fields - id and title\", function () {\n    const responseData = res.getBody();\n    \n    expect(responseData).to.be.an('object');\n    expect(responseData).to.have.property('id');\n    expect(responseData).to.have.property('title');\n});\n\n\ntest(\"Title is a non-empty string\", function () {\n  const responseData = res.getBody();\n  \n  expect(responseData).to.be.an('object');\n  expect(responseData.title).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Title should not be empty\");\n});\n\n\ntest(\"Response time is within an acceptable range\", function () {\n  expect(res.getResponseTime()).to.be.below(300);\n});\n\n",
+        "auth": {
+          "mode": "none"
+        }
+      }
+    }
+  ],
+  "activeEnvironmentUid": "FxfEjmJK9TaXfodZDFS3q",
+  "environments": [
+    {
+      "variables": [
+        {
+          "name": "base_url",
+          "value": "https://dummyjson.com",
+          "enabled": true,
+          "secret": false,
+          "type": "text"
+        },
+        {
+          "name": "access_token",
+          "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTcyMTc0MjcwOSwiZXhwIjoxNzIzNDcwNzA5fQ.aCd54j4rIecrmK9gB3Pw-RpSYvkBlt19zCQjT4pSHM8",
+          "enabled": true,
+          "secret": false,
+          "type": "text"
+        }
+      ],
+      "name": "dev"
+    }
+  ],
+  "brunoConfig": {
+    "version": "1",
+    "name": "25_July_Demo",
+    "type": "collection",
+    "ignore": [
+      "node_modules",
+      ".git"
+    ]
+  }
+}

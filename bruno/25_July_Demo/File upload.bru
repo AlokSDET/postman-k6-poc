@@ -1,0 +1,19 @@
+meta {
+  name: File upload
+  type: http
+  seq: 6
+}
+
+post {
+  url: https://petstore.swagger.io/v2/pet/9223372036854611000/uploadImage
+  body: multipartForm
+  auth: none
+}
+
+headers {
+  : 
+}
+
+body:multipart-form {
+  file: @file(/Users/aloksh/Downloads/visual_diff.png)
+}

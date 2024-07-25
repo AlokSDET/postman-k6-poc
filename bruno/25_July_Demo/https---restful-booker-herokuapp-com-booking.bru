@@ -1,0 +1,15 @@
+meta {
+  name: https---restful-booker-herokuapp-com-booking
+  type: http
+  seq: 1
+}
+
+get {
+  url: https://restful-booker.herokuapp.com/booking
+  body: none
+  auth: none
+}
+
+assert {
+  res.status: eq 200
+}

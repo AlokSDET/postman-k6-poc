@@ -1,0 +1,15 @@
+meta {
+  name: Query param
+  type: http
+  seq: 4
+}
+
+get {
+  url: https://demoqa.com/BookStore/v1/Book?ISBN=9781449325862
+  body: none
+  auth: none
+}
+
+params:query {
+  ISBN: 9781449325862
+}

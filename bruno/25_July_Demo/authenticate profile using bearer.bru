@@ -1,0 +1,15 @@
+meta {
+  name: authenticate profile using bearer
+  type: http
+  seq: 5
+}
+
+get {
+  url: https://api.escuelajs.co/api/v1/auth/profile
+  body: none
+  auth: none
+}
+
+headers {
+  Authorization: Bearer {{access_token}}
+}

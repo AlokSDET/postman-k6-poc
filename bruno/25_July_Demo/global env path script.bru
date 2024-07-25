@@ -1,0 +1,48 @@
+meta {
+  name: global env path script
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{base_url}}/products/add
+  body: json
+  auth: none
+}
+
+headers {
+  {{gAuthHeaderKey}}: {{gAuthHeaderValue}}
+}
+
+body:json {
+  {
+  "title": "{{title}}"
+  }
+}
+
+script:pre-request {
+  
+  // pm.globals.set('title', "bmw");
+}
+
+tests {
+  test('Successful POST request', function () {
+      expect(res.getStatus()).to.be.oneOf([
+          200,
+          201
+      ]);
+  })
+  
+  
+  var responseBody = res.getBody();
+  
+  test(`Check if response is having bmw`, function () {
+     
+          expect(responseBody.title).to.eql('bmw');
+  
+  })
+  
+  test("Response time is less than 200ms", function () {
+    expect(res.getResponseTime()).to.be.below(200);
+  });
+}
